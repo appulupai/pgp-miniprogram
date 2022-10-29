@@ -1,0 +1,45 @@
+<!--pages/search/search.wxml-->
+
+<view wx:for="{{list}}">
+
+
+<van-cell-group>
+<van-field
+id="{{item}}"
+   class="putin"
+  placeholder="请输入菜名"
+  border="{{ false }}"
+  style="width: 80%;float: right;"
+  bindinput="bindKeyInput"
+/>
+</van-cell-group>
+<text style="position: relative;left: 40rpx;top:25rpx; ">菜品{{item}}</text>
+</view>
+
+<view>
+<van-button plain type="primary" bindtap="formsubmit">　　提交　　</van-button>
+<van-button plain type="primary" bind:click="add" >　添加菜品　</van-button>
+<van-button plain type="primary" bind:click="reset" >　重置　</van-button>
+</view> 
+
+<van-cell-group>
+<van-cell title="能量" value="" style="width: 33.3%;float: left;"/>
+<van-cell title="蛋白质" value=""   style="width: 33.3%;float: left;"/>
+<van-cell title="脂肪" value=""   style="width: 33.3%;float: left;"/>
+</van-cell-group>
+
+
+
+<view>
+<van-cell-group>
+<van-field
+  value=""
+  placeholder="建议："
+  
+  type="textarea"
+  border="1px"
+  bind:change="onChange"
+  autosize
+  disabled />
+</van-cell-group>
+</view>

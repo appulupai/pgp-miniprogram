@@ -1,0 +1,13 @@
+<!-- <input class="weui-input" maxlength="100" placeholder="请输入id值" />
+<view>aaa</view> -->
+
+<view class="setinput">
+   <input class="input1" placeholder="请输入id值" name="id" bindinput="bindKeyInput"/>
+</view>
+<view>
+  <form class="page__bd" bindsubmit="formSubmit" bindreset="formReset">
+  <button   formType="submit" >提交</button>
+  </form>
+</view>
+
+

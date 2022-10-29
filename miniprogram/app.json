@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/list/list",
+    "pages/search/search",
+    "pages/analyse/analyse"
+
+    
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "小程序",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "./pages/miniprogram_npm/@vant/weapp/button/index",
+    "van-tabbar": "./pages/miniprogram_npm/@vant/weapp/tabbar/index",
+    "van-tabbar-item": "./pages/miniprogram_npm/@vant/weapp/tabbar-item/index",
+    "van-field": "./pages/miniprogram_npm/@vant/weapp/field/index",
+    "van-cell": "./pages/miniprogram_npm/@vant/weapp/cell/index",
+  "van-cell-group": "./pages/miniprogram_npm/@vant/weapp/cell-group/index",
+  "van-search": "./pages/miniprogram_npm/@vant/weapp/search/index"
+
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#000000",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "index"
+    },
+    {
+      "pagePath": "pages/analyse/analyse",
+      "text": "analyse"
+    },
+    {
+      "pagePath": "pages/search/search",
+      "text": "search"
+    }]
+  }
+  
+  
+}

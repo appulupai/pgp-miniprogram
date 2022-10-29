@@ -1,0 +1,16 @@
+<!--pages/search/search.wxml-->
+<van-search value="" placeholder="请输入菜品名称" />
+<van-cell-group>
+  <van-cell title="菜品信息" />
+  
+</van-cell-group>
+<van-cell-group>
+  <van-field
+   
+    placeholder=""
+    
+    bind:change="onChange"
+    disabled
+    autosize
+  />
+</van-cell-group>
