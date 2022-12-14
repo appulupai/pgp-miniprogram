@@ -1,6 +1,15 @@
+<view class="my-userinfo-container">
+<view class="top-box">
+  <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+ <image src="{{avatarurl}}" class="avatar"></image>
+ </button>
+ <input class="nickname" type="nickname" placeholder="{{nickname}}"         	bindconfirm="keyInputNickname" />
+</view>
+</view>
+<van-grid>
 
-<form bindsubmit="formsubmit">
-<input 	bindinput="bindKeyInput" />
-<button form-type="submit" >提交</button>
-
-</form>
+  <van-grid-item icon="photo-o" text="喜欢的菜" />
+  <van-grid-item icon="photo-o" text="食谱记录" />
+  <van-grid-item icon="photo-o" text="我的信息" />
+  <van-grid-item icon="photo-o" text="推荐菜谱" />
+</van-grid>

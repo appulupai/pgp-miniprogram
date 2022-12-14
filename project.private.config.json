@@ -52,6 +52,47 @@
           "pathName": "pages/updateRecordSuccess/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/analyse/analyse",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/search/search",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/login/login",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/login/login",
+          "query": "",
+          "launchMode": "default",
+          "scene": null,
+          "partialCompile": {
+            "enabled": false,
+            "pages": [
+              "pages/add/add"
+            ]
+          }
+        },
+        {
+          "name": "",
+          "pathName": "pages/add/add",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

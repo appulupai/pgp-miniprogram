@@ -1,7 +1,4 @@
-// const { get } = require("./router/user")
-
-// pages/list/list.js
-
+const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 Page({
 
   /**
@@ -15,97 +12,68 @@ Page({
          detailsContent:'1',
          test:'0',
          name:'',
-         t:'0'
+         t:'0',
+         nickname:"",
+          avatarurl:defaultAvatarUrl,
+          nickname:"请输入昵称"
   }
  ,
-
-  formSubmit_cha: function(e) {
-
-// var id=this.data.id
-
-wx.request({
-  url: 'http://127.0.0.1:5000/api/cha',
-  method:'GET',
- // data:{id:id},
+ onChooseAvatar(e) {
+  let avatarurl = e.detail 
+  this.setData({
+    avatarurl:avatarurl.avatarUrl,
+  })
+  wx.setStorage({
+    key: 'avatarurl',
+    data: avatarurl,
+    success:function(res){console.log(avatarurl)}
+  })
+},
+keyInputNickname:function(e){
+  let nickname=e.detail;
+  let that=this
+  this.setData({
+    nickname:e.detail,
+  })
+  wx.setStorage({
+    key: 'nickname',
+    data: nickname,
+    success:function(res){console.log(nickname)}
+  })
  
-  success: (res) => {
-    
-this.setData({ list:res.data.data}
-  
-)
-console.log(this.data.list)
-  },
- 
-  fail: (res) => {},
-  complete: (res) => {},
-})
-   
-  },
-  formSubmit_zeng:function(){
-    
-  let name=this.data.name
-    wx.request({
-      url: 'http://127.0.0.1:5000/api/zeng?name='+name,
-      method:'GET',
-     
-     
-      success: (res) => {
-        console.log(res)
-      },
-     
-      fail: (res) => {},
-      complete: (res) => {},
-    })
-       
-  },
-  formSubmit_gai:function(){
-
-  },
-  formSubmit:function(){
-
-  },
-  formSubmit_shan:function(){
-var id=this.data.id
-wx.request({
-  url: 'http://127.0.0.1:5000/api/shan?id='+id,
-  method:'GET',
-  success: (res) => {
-  },
- 
-  fail: (res) => {},
-  complete: (res) => {},
-})
-   
-  },
+},
   bindKeyInput1:function(e){
    
     this.setData({
     id:e.detail.value,
     
     })},
-    bindKeyInput2:function(e){
    
-      this.setData({
-      name:e.detail.value,
-      
-      }
-     
-    )},
-    bindKeyInput:function(e){
-   
-      this.setData({
-      t:e.detail.value,
-      
-      }
-     
-    )
-    console.log(e.detail.value)
-  },
+    
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    let that=this
+    wx.getStorage({
+      key: 'avatarurl',
+      success: function (res){
+       that.setData({
+         avatarurl:res.data.avatarUrl
+       })
+       console.log(res.data)
+      }
+    })
+    wx.getStorage({
+      key: 'nickname',
+      success: function (res){
+       that.setData({
+         nickname:res.data.value
+       })
+       
+      }
+      
+    })
   },
 
   /**

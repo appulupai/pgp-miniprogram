@@ -1,0 +1,11 @@
+<!--components/login/login.wxml-->
+<view class="login-container">
+  <van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" size="100px"/>
+<button decode="{{true}}"style="width: 1%;" type="primary" bindtap="getUserProfile" style="height: 100rpx;">　　　　　　　登录　　　　　　　</button>
+
+</view>
+
+ 
+
+  
+

@@ -1,0 +1,36 @@
+<!--pages/add/add.wxml-->
+<!-- <navigator url="../search/search" hover-class="navigator-hover">返回</navigator> -->
+<view>
+  <van-cell-group>
+  <van-field
+     label="添加新菜品" 
+    placeholder="请输入菜品名称"
+    border="{{ false }}"
+    bindinput="nameinput"
+  />
+ 
+  <view wx:for="{{addlist}}">
+  <van-field   
+  style="width: 50%;float: left;"
+     label='材料名称' 
+    placeholder=""
+    border="true"
+    data-id="{{item}}"
+    bindinput="bindkeyinput"
+  />
+ 
+  <van-field
+  style="width: 50%;float: left;"
+     label='所占比例' 
+    placeholder=""
+    border="true"
+    data-id="{{item}}"  
+    bindinput="bindkeyinput2" />
+  </view>
+</van-cell-group>
+  <van-button icon="add" type="primary" bindtap="adddish" >添加材料</van-button>
+  　
+  <van-button icon="submit" type="primary" bindtap="submitNewDish">提 交</van-button>　
+  <van-button icon="submit" type="primary" bindtap="submitNewDish">清 空</van-button>
+</view>
+

@@ -1,16 +1,82 @@
 <!--pages/search/search.wxml-->
-<van-search value="" placeholder="请输入菜品名称" />
+<van-search  placeholder="请输入菜品名称" bindsearch="onSearch"/>
 <van-cell-group>
-  <van-cell title="菜品信息" />
+ 
+    <van-button  type="primary" bindtap="save" style="width: 20%;float: right;">保存</van-button>
+    <van-button  type="primary" bindtap="adddish" style="width: 20%;float: right;">添加</van-button>
+  <van-cell title="菜品信息" style="width: 60%;float: right;"/>
+  
+  <view style="clear:both"></view>
   
 </van-cell-group>
+
+
+
+<!-- <view wx:for="{{list}}">
+
+  <van-button type="default" style="width: 20%;float: right;" bindtap="getdetail" data-id="{{item}}">{{text}}</van-button>
 <van-cell-group>
   <van-field
-   
+  style="width: 80%;float: right;"
     placeholder=""
-    
+    value="{{dishname}}"
     bind:change="onChange"
-    disabled
+     disabled="{{editor}}"
     autosize
   />
 </van-cell-group>
+<view wx:if="{{ifdetail==1}}" onshow="{{ifdetail==1}}">
+<van-cell-group wx:for="{{circle}}">
+  <van-field 
+    value="{{mateProportions[item-1].mateName+':'+mateProportions[item-1].proportion*100+'%'}}"
+    placeholder=""
+    disabled="{{editor}}"
+    bind:change="onChange"
+  />
+</van-cell-group>
+
+</view>
+</view> -->
+<view class="dishlist" wx:for="{{list}}" wx:if="{{ifsearch==false}}">
+  <van-cell-group>
+  <van-field
+    value="{{item}}"
+    data-id="{{indexOf(item)+1}}"
+    disabled
+    border="{{ false }}"
+  />
+</van-cell-group>
+</view>
+<view wx:if="{{ifsearch}}">
+  <van-button type="default" style="width: 20%;float: right;" bindtap="getdetail" >详情</van-button>
+  <van-cell-group>
+  <van-field
+    value="{{dishname}}"
+    style="width: 80%;float: right;"
+    data-id="{{item}}"
+    disabled
+    border="{{ false }}"
+  />
+</van-cell-group>
+<van-cell-group wx:for="{{circle}}" wx:if="{{ifdetail==true}}">
+  <van-field 
+  value="{{mateProportions[item-1].proportion}}"
+    placeholder=""
+    disabled="{{editor}}"
+    bind:change="onChange"
+    style="width: 40%;float: right;"
+  />
+  <view style="width: 20%;float: right;line-height: 44px;text-align: center;">占比:</view>
+  <van-field 
+    
+    value="{{mateProportions[item-1].mateName}}"
+    placeholder=""
+    disabled="{{editor}}"
+    bind:change="onChange"
+    style="width: 40%;float: right;"
+  />
+</van-cell-group>
+<van-button type="default"wx:if="{{ifdetail==true}}" bindtap="edit">　　　　　　　　　编辑　　　　　　　　　</van-button>
+</view>
+<van-toast id="van-toast" />
+

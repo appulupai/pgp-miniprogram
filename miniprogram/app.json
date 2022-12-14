@@ -1,9 +1,12 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/index/index",
     "pages/list/list",
     "pages/search/search",
-    "pages/analyse/analyse"
+    "pages/analyse/analyse",
+    "pages/add/add",
+    "pages/records/records"
 
     
   ],
@@ -22,7 +25,11 @@
     "van-field": "./pages/miniprogram_npm/@vant/weapp/field/index",
     "van-cell": "./pages/miniprogram_npm/@vant/weapp/cell/index",
   "van-cell-group": "./pages/miniprogram_npm/@vant/weapp/cell-group/index",
-  "van-search": "./pages/miniprogram_npm/@vant/weapp/search/index"
+  "van-search": "./pages/miniprogram_npm/@vant/weapp/search/index",
+  "van-icon": "./pages/miniprogram_npm/@vant/weapp/icon/index",
+  "van-grid": "./pages/miniprogram_npm/@vant/weapp/grid/index",
+  "van-grid-item": "./pages/miniprogram_npm/@vant/weapp/grid-item/index",
+  "van-toast": "./pages/miniprogram_npm/@vant/weapp/toast/index"
 
   },
   "tabBar": {
