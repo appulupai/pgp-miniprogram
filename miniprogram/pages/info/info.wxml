@@ -1,0 +1,50 @@
+<!--pages/info/info.wxml-->
+
+<van-cell-group>
+  <van-field
+    value="{{sex}}"
+    label="性别"
+    disabled
+    border="{{ false }}"
+    bind:tap="showPopupSex"
+  />
+  <van-popup show="{{ show }}"  position="bottom" bind:close="onCloseSex">
+<van-picker columns="{{ columnsSex }}" bind:change="onChangeSex" />
+</van-popup>
+ 
+  <van-field
+    value="{{birthday}}"
+    label="生日"
+    disabled
+    border="{{ false }}"
+    bind:tap="showPopupBirth"
+  />
+  <van-popup show="{{ showBirth }}"  position="bottom" bind:close="onCloseBirth">
+<van-picker columns="{{ columnsBirth }}" bind:change="onChangeBirth" />
+</van-popup>
+  <van-field
+    value="{{h}}"
+    label="身高"
+    disabled
+    border="{{ false }}"
+    bind:tap="showPopupHeight"
+  />
+  <van-popup show="{{ showHeight }}"  position="bottom" bind:close="onCloseHeight">
+<van-picker columns="{{ columnsHeight }}" bind:change="onChangeHeight" />
+</van-popup>
+  <van-field
+    value="{{w}}"
+    label="当前体重"
+    disabled
+    border="{{ false }}"
+    bind:tap="showPopupWeight"
+  />
+  <van-popup show="{{ showWeight }}"  position="bottom" bind:close="onCloseWeight">
+<van-picker columns="{{ columnsWeight }}" bind:change="onChangeWeight" />
+</van-popup>
+</van-cell-group>
+<!-- <van-cell title="展示弹出层" is-link bind:click="showPopup"  />
+
+<van-popup show="{{ show }}"  position="bottom" bind:close="onClose">
+<van-picker columns="{{ columns }}" bind:change="onChange" />
+</van-popup> -->

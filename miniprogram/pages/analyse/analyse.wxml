@@ -43,7 +43,7 @@ data-id="{{item}}"
 <view>
 <van-cell-group>
 <van-field
-  value=""
+  value="{{advice}}"
   placeholder="建议："
   
   type="textarea"
@@ -53,3 +53,5 @@ data-id="{{item}}"
   disabled />
 </van-cell-group>
 </view>
+<view style="height: 100px;"> </view>
+

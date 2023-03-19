@@ -31,6 +31,6 @@
   <van-button icon="add" type="primary" bindtap="adddish" >添加材料</van-button>
   　
   <van-button icon="submit" type="primary" bindtap="submitNewDish">提 交</van-button>　
-  <van-button icon="submit" type="primary" bindtap="submitNewDish">清 空</van-button>
+  <van-button icon="submit" type="primary" bindtap="clear">清 空</van-button>
 </view>
 

@@ -29,6 +29,12 @@ Page({
     success:function(res){console.log(avatarurl)}
   })
 },
+getinfo:function(e){
+  wx.navigateTo({
+    url: '../info/info',
+  })
+}
+,
 keyInputNickname:function(e){
   let nickname=e.detail;
   let that=this
@@ -48,6 +54,12 @@ keyInputNickname:function(e){
     id:e.detail.value,
     
     })},
+    goto:function(e){
+      wx.navigateTo({
+        url: '../info/info',
+      })
+    }
+    ,
    
     
   /**

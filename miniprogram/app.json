@@ -6,7 +6,8 @@
     "pages/search/search",
     "pages/analyse/analyse",
     "pages/add/add",
-    "pages/records/records"
+    "pages/records/records",
+    "pages/info/info"
 
     
   ],
@@ -29,8 +30,9 @@
   "van-icon": "./pages/miniprogram_npm/@vant/weapp/icon/index",
   "van-grid": "./pages/miniprogram_npm/@vant/weapp/grid/index",
   "van-grid-item": "./pages/miniprogram_npm/@vant/weapp/grid-item/index",
-  "van-toast": "./pages/miniprogram_npm/@vant/weapp/toast/index"
-
+  "van-toast": "./pages/miniprogram_npm/@vant/weapp/toast/index",
+  "van-picker": "./pages/miniprogram_npm/@vant/weapp/picker/index",
+  "van-popup": "./pages/miniprogram_npm/@vant/weapp/popup/index"
   },
   "tabBar": {
     "custom": true,

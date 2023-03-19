@@ -8,8 +8,8 @@
 </view>
 <van-grid>
 
-  <van-grid-item icon="photo-o" text="喜欢的菜" />
-  <van-grid-item icon="photo-o" text="食谱记录" />
-  <van-grid-item icon="photo-o" text="我的信息" />
-  <van-grid-item icon="photo-o" text="推荐菜谱" />
+  <van-grid-item icon="like-o" text="喜欢的菜" />
+  <van-grid-item icon="records" text="食谱记录" />
+  <van-grid-item icon="fire-o" text="推荐菜谱" />
+  <van-grid-item  icon="info-o"  text="我的信息" bindtap="goto"/>
 </van-grid>

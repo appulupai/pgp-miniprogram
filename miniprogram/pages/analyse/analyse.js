@@ -15,7 +15,8 @@ Page({
               heat:0,
               protein:0,
               fat:0,
-              clear:" "
+              clear:" ",
+              advice:"",
 
   },
 delete:function(e){
@@ -58,7 +59,8 @@ this.data.list.splice(this.data.count,0,this.data.count+1)
       {count:1,
         list:[1],
         menu:[],
-        clear:this.data.clear
+        clear:this.data.clear,
+        advice:""
       }
     )
 
@@ -86,7 +88,8 @@ this.data.list.splice(this.data.count,0,this.data.count+1)
         this.setData({
            heat:res.data.data.heat,
            protein:res.data.data.protein,
-           fat:res.data.data.fat
+           fat:res.data.data.fat,
+           advice:res.data.data.advice
         })}
         else{
           console.log(res.data.msg)

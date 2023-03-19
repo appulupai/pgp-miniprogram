@@ -57,6 +57,12 @@ Page({
         console.log(res)
       }
     })
+  },
+  clear:function(e){
+    this.setData({
+      addlist:[1],
+      count:1,
+    })
   }
  
   ,

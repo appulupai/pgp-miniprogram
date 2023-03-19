@@ -1,10 +1,10 @@
 .my-userinfo-container{
  width: 100%;
- background-color: #f4f4f4;
+ background-color: #89f389;
 }
 .top-box{
   height: 400rpx;
-  background-color: #c00000; 
+  background-color: #89f389; 
   display: flex;
   justify-content: center;
   align-items: center;
