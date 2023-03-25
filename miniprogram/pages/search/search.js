@@ -1,5 +1,5 @@
 // pages/search/search.js
-// import Toast from "../miniprogram_npm/@vant/weapp/toast/toast"
+import Toast from "../miniprogram_npm/@vant/weapp/toast/toast"
 let test=[]
 
 Page({
@@ -8,9 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {     
-              detailList:[],  
+             
               value:"",
-              list:[ ],
+              list:[ ],//储存名字的数组
 	            pagesize:10,//每页展示的条数
 	            curpage: 1,//当前页数
 	            totalpage:1,//总页数
@@ -18,25 +18,36 @@ Page({
                 frontPage:false,
                 lastPage:false,
                 menuinfo:{},
-                circle:[1],
-                ifdetail:false,
-                ifdetailUsual:false,
+                circle:[1],//菜品循环
+                circleList:[[1]],//成分循环
+                ifdetailList:[false],//是否展示详情
                 currentdish:0,
                 text:"详情",                
                 editor:true,
                 editorUsual:true,
-                dishname:"",
-                newdishname:"",
-                matename:[],
+                dishName:"",
+                newdishName:"",
+                mateName:[],
                 mateProportions:[],
                 newdish:[],
                 count:0,
-                mateProportionsList:[{}],
+                mateProportionsList:[{"num":" ","mateProportions":[]}],
                 request:{"dishName":" ","dishUnit":"100","mateProportions":[]},
-                ifsearch:false
+                ifsearch:false,
+                index:[0],
+                updateList:[false]
           
 
   },
+  addMate:function(e){
+   this.data.mateProportionsList[e.target.dataset.id].mateProportions.push({mateName:"",proportion:""})
+   this.data.circleList[e.target.dataset.id].push(this.data.circleList[e.target.dataset.id].length+1)
+   this.setData({
+     mateProportionsList:this.data.mateProportionsList,
+     circleList:this.data.circleList
+   })
+  }
+  ,
   getlist:function(e){
     let pagesize=this.data.pagesize
     let pageNumber=this.data.curpage
@@ -45,36 +56,42 @@ Page({
      url: 'https://nutrition-14585-5-1312889136.sh.run.tcloudbase.com/dish/page?currentPage='+pageNumber+'&&pageSize='+pagesize,
      method:'get',
      success:(res)=>{
-       console.log(res)
       var arr1 = new Array();
       var arr2 = new Array();
       arr1= that.data.list;//页面此时展示的l列表(数组)
       arr2 = res.data.data.records;//后端返回的列表（数组）
       console.log(res)
-      var totalpage=res.data.data.total/that.data.pagesize+1;//后端返回的页数（数组）
+      console.log(that.data.totalpage)
+      var totalpage=Math.floor(res.data.data.total/that.data.pagesize)+1;//后端返回的页数（数组）
       for(var i=0;i<arr2.length;i++){
         arr2[i]=arr2[i].dishName
-        that.data.detailList.push(false)
+        that.data.ifdetailList.push(false)
+        that.data.mateProportionsList[i]={"num":"","mateProportions":[]}
       }
        arr1 = arr1.concat(arr2);//合并两个数组
        that.setData({
                      list: arr1, //合并后更新list
                      totalpage:totalpage ,//
+                     mateProportionsList:that.data.mateProportionsList
                    })
      }
    })
+   console.log(this.data.mateProportionsList)
   },
   bindkeyinput:function(e){
-    this.data.matename[e.target.dataset.id-1]=e.detail
-    this.setData({
-      matename:this.data.matename
-    })
+    
+   this.data.mateProportionsList[e.target.dataset.id].mateProportions[e.target.dataset.num-1].mateName=e.detail
+   this.setData({
+     mateProportionsList:this.data.mateProportionsList
+   })
+   console.log(e.target.dataset.num-1)
    },
    bindkeyinput2:function(e){
-     this.data.proportion[e.target.dataset.id-1]=e.detail
+    this.data.mateProportionsList[e.target.dataset.id].mateProportions[e.target.dataset.num-1].proportion=e.detail
      this.setData({
        proportion:this.data.proportion
      })
+     console.log(this.data.circleList)
      
    },
   adddish:function(e){
@@ -83,12 +100,11 @@ Page({
     })
   }
   ,
-  savesuccess: function(e){
-    Toast.success('保存成功');
-    }
-  ,
-  search:function(name){
+
+  search:function(num,name){
+    console.log(name)
     let dish=name
+    this.data.ifdetailList[num]=false,
   wx.request({
     url: 'https://nutrition-14585-5-1312889136.sh.run.tcloudbase.com/relation?Name='+dish,
     method:'get',
@@ -97,28 +113,37 @@ Page({
    },
     success: (res) => {
       this.data.circle=[1]
+      
       console.log(res)
       if(res.data.data==null){
+        this.data.mateProportionsList[num]={"num":num,mateProportions:[{"mateName":" ","proportion":" "}]}
+        this.data.circleList[num]=this.data.circle
         this.setData({
           circle:[1],
-          dishname:"菜品暂无",
-          ifsearch:true,
-          ifdetail:false
+          circleList:this.data.circleList,
+          ifdetailList:this.data.ifdetailList,
+          dishName:dish,
+          mateProportions:[{"mateName":" ","proportion":" "}],
+          mateProportionsList:this.data.mateProportionsList
         })
       }else{
-      for(var i=2;i<=res.data.data.mateProportions.length;i++){
-        this.data.circle.push(i)
+        this.data.mateProportionsList[num]={"num":num,"mateProportions":[res.data.data.mateProportions[0]]}
+      for(var i=1;i<=res.data.data.mateProportions.length-1;i++){
+        this.data.circle.push(i+1)
+        this.data.mateProportionsList[num].mateProportions.push(res.data.data.mateProportions[i])
       }
     }
       if(res.data.flag===true &&res.data.data!==null){
+        this.data.circleList[num]=this.data.circle
         this.setData({
+          ifdetailList:this.data.ifdetailList,
+          mateProportionsList:this.data.mateProportionsList,
           mateProportions:res.data.data.mateProportions,
-          dishname:res.data.data.dishName,
-          ifsearch:true,
-          ifdetail:false,
-          circle:this.data.circle
+          dishName:res.data.data.dishName,
+          circle:this.data.circle,
+          circleList:this.data.circleList
         })
-        console.log(this.data.mateProportions)
+        console.log(this.data.mateProportionsList)
      }
    
 
@@ -132,34 +157,44 @@ Page({
   })}
   ,
   onSearch:function(e){
-    console.log(e.detail)
-    this.search(e.detail)
-    this.setData({
-      dishname:e.detail
-    })
+    
+    if(e.detail==""){
+      this.getlist()
+      this.setData({
+        ifsearch:false,
+        ifdetailList:[false]
+      })
+    }else{this.search(0,e.detail)
+        this.data.list[0]=e.detail
+        this.setData({
+          ifsearch:true,
+      dishName:e.detail
+    })}
+    console.log(this.data.mateProportionsList)
   },
   getdetail:function(e){
-    if(this.data.ifdetail==0){
-      this.setData({
-        ifdetail:true,
-        })
-    }else{    
+    this.search(0,this.data.list[0])
    this.setData({
-     editor:false
+     ifdetailList:[true],
+     updateList:[true]
    })
-  }
 },getdetailUsual:function(e){
-  console.log(e.target)
-  this.data.detailList[e.target.dataset.id]=true
+  let index=e.target.dataset.id
+  this.search(index,this.data.list[index])
+  this.data.ifdetailList[index]=true
+  this.data.updateList[index]=true
   this.setData({
-    detailList:this.data.detailList
+    ifdetailList:this.data.ifdetailList,
+    updateList:this.data.updateList
   })
-  console.log(this.data.detailList)
+  console.log(this.data.mateProportionsList)
 },
   save:function(e){
-    this.savesuccess()
-    this.data.request.mateProportions=this.data.mateProportions
-    this.data.request.dishName=this.data.dishname
+    Toast.success('保存成功');
+    for(let i=0;i<this.data.mateProportionsList.length;i++){
+      if(this.data.mateProportionsList[i].num!==""){
+    this.data.request.mateProportions=this.data.mateProportionsList[i].mateProportions
+    this.data.request.dishName=this.data.list[i]
     let dish=JSON.parse(JSON.stringify(this.data.request))
     console.log(dish)
     wx.request({
@@ -172,22 +207,16 @@ Page({
         
       }
     })
+  }
+  }
     this.setData(
       {
-        ifdetail:0
+        ifdetailList:[false],
+        mateProportionsList:[]
       }
     )
   }
-  ,
-  onChange:function(e){
-   this.data.mateProportions[e.target.dataset.id-1].proportion=e.detail
-   this.data.mateProportions[e.target.dataset.id-1].matename=e.detail
-     this.setData({
-      mateProportions:this.data.mateProportions,
-   
-     })
-   
-  }
+  
   ,
   edit:function(e){
     
